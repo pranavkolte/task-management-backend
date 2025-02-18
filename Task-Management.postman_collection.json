@@ -1,0 +1,399 @@
+{
+	"info": {
+		"_postman_id": "b3b6cab7-7b32-4b52-8fb1-fcca4be2c8af",
+		"name": "Task-Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36565132"
+	},
+	"item": [
+		{
+			"name": "api",
+			"item": [
+				{
+					"name": "v1",
+					"item": [
+						{
+							"name": "users",
+							"item": [
+								{
+									"name": "/signup/",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Test user\",\r\n    \"email\": \"pranavkolte111@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/v1/users/signup/",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"users",
+												"signup",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/login/",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"test@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/v1/users/login/",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"users",
+												"login",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/login/ -- admin",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/v1/users/login/",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"users",
+												"login",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/refresh/",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczOTk5MTc3MywiaWF0IjoxNzM5OTA1MzczLCJqdGkiOiJiYjlhMWUwNWQwYmQ0YzlkYWMxMDAzZGRkY2VmZDliNCIsInVzZXJfaWQiOiI0M2M4ZDQ2MC0yY2RjLTQ2MDUtODIzMi0wN2YwNzEyYWUxMTkiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIn0.ejyIbYylzWpc8VRCWREZagGw-gu1MOZZdwtctt31XEI\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/v1/users/refresh/",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"users",
+												"refresh",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "tasks",
+							"item": [
+								{
+									"name": "/",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5OTE2NDgyLCJpYXQiOjE3Mzk5MTI4ODIsImp0aSI6IjdkYjEyZmI4NTM4ODQzNDliMDBlZTA1YjY0MDM2MjNmIiwidXNlcl9pZCI6IjdkZThmNTgxLTg0NmQtNDFlZC1iZDkzLWIxOWQzYWEwNzQ4ZCIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20ifQ.heyxoqlCJcjyqpk7KsCKxMKgVY3DwbQQWoSxhfE5X-Q",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Test test 3\",\r\n    \"description\": \"thsi is description\",\r\n    \"status\": \"todo\", // todo, in_progress, done\r\n    \"priority\": \"low\", //high, medium, low\r\n    \"assigned_user_email\": \"pranavkolte111@gmail.com\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/v1/tasks/",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"tasks",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5OTEwMjM3LCJpYXQiOjE3Mzk5MDY2MzcsImp0aSI6ImNhODE2ZmZjYmVlMTQwZGVhZGI3OWJiNmE3NTNlYzk5IiwidXNlcl9pZCI6IjdkZThmNTgxLTg0NmQtNDFlZC1iZDkzLWIxOWQzYWEwNzQ4ZCIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20ifQ.t1zRqEn0teOp23BDYbVtdqcv8Ok67V3Ub0cNb64KKv8",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/v1/tasks/",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"tasks",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/<task_id>/",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5OTEwMjM3LCJpYXQiOjE3Mzk5MDY2MzcsImp0aSI6ImNhODE2ZmZjYmVlMTQwZGVhZGI3OWJiNmE3NTNlYzk5IiwidXNlcl9pZCI6IjdkZThmNTgxLTg0NmQtNDFlZC1iZDkzLWIxOWQzYWEwNzQ4ZCIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20ifQ.t1zRqEn0teOp23BDYbVtdqcv8Ok67V3Ub0cNb64KKv8",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/v1/tasks/f621812f-718d-4e53-b263-df20819ee65a/",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"tasks",
+												"f621812f-718d-4e53-b263-df20819ee65a",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/<task_id>/",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5OTE2NDgyLCJpYXQiOjE3Mzk5MTI4ODIsImp0aSI6IjdkYjEyZmI4NTM4ODQzNDliMDBlZTA1YjY0MDM2MjNmIiwidXNlcl9pZCI6IjdkZThmNTgxLTg0NmQtNDFlZC1iZDkzLWIxOWQzYWEwNzQ4ZCIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20ifQ.heyxoqlCJcjyqpk7KsCKxMKgVY3DwbQQWoSxhfE5X-Q",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    // \"title\": \"Admin update task\",\r\n    // \"description\": \"thsi is description\",\r\n    \"status\": \"in_progress\" // todo, in_progress, done\r\n    // \"assigned_user_email\": \"test@gmail.com\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/v1/tasks/3747d396-5aaa-423d-bf53-1da1968aab48/",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"tasks",
+												"3747d396-5aaa-423d-bf53-1da1968aab48",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/<task_id>/",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5OTEwMjM3LCJpYXQiOjE3Mzk5MDY2MzcsImp0aSI6ImNhODE2ZmZjYmVlMTQwZGVhZGI3OWJiNmE3NTNlYzk5IiwidXNlcl9pZCI6IjdkZThmNTgxLTg0NmQtNDFlZC1iZDkzLWIxOWQzYWEwNzQ4ZCIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20ifQ.t1zRqEn0teOp23BDYbVtdqcv8Ok67V3Ub0cNb64KKv8",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://127.0.0.1:8000/api/v1/tasks/a6003b2b-d31d-45c8-934b-b2ade6ee6b8a/",
+											"protocol": "http",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"v1",
+												"tasks",
+												"a6003b2b-d31d-45c8-934b-b2ade6ee6b8a",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

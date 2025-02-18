@@ -12,7 +12,7 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = ['task_id', 'title', 'description', 'status', 'created_at', 
-                 'assigned_user', 'created_by', 'assigned_user_email']
+                 'assigned_user', 'created_by', 'assigned_user_email', 'priority']
         optional_fields = ['assigned_user_email']
         read_only_fields = ['task_id', 'created_at', 'created_by']
 
@@ -36,4 +36,3 @@ class TaskSerializer(serializers.ModelSerializer):
             assigned_user_email = validated_data.pop('assigned_user_email')
             instance.assigned_user = User.objects.get(email=assigned_user_email) if assigned_user_email else None
         return super().update(instance, validated_data)
-    

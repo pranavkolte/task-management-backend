@@ -13,6 +13,11 @@ class Task(models.Model):
         default='todo',
         max_length=20
     )
+    priority = models.CharField(
+        choices=[('low', 'Low'), ('medium', 'Medium'), ('high', 'High')],
+        default='medium',
+        max_length=20
+    )
     assigned_user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,

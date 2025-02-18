@@ -141,7 +141,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "users.user"
 
 AUTHENTICATION_BACKENDS = [
-    "sb_auth.backends.CustomUserBackend",  # Your custom backend
+    "users.backends.CustomUserBackend",  # Your custom backend
     "django.contrib.auth.backends.ModelBackend",  # Default backend (optional)
 ]
 
@@ -159,13 +159,11 @@ SIMPLE_JWT = {
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": [
         "rest_framework.renderers.JSONRenderer",
-        # "rest_framework.renderers.BrowsableAPIRenderer",  # Enables DRF's default UI
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
     ],
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        # 'rest_framework.authentication.TokenAuthentication',  # For token-based auth
         "rest_framework_simplejwt.authentication.JWTAuthentication"
     ],
 }

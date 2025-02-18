@@ -7,11 +7,12 @@ from users.models import User
 class TaskSerializer(serializers.ModelSerializer):
     assigned_user = UserSerializer(read_only=True, allow_null=True)
     assigned_user_email = serializers.EmailField(write_only=True, required=False, allow_null=True)
+    created_by = UserSerializer(read_only=True, allow_null=True)
 
     class Meta:
         model = Task
         fields = ['task_id', 'title', 'description', 'status', 'created_at', 
-                 'assigned_user', 'assigned_user_email']
+                 'assigned_user', 'created_by', 'assigned_user_email']
         optional_fields = ['assigned_user_email']
         read_only_fields = ['task_id', 'created_at', 'created_by']
 
@@ -24,11 +25,10 @@ class TaskSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         user = request.user if request else None
         
-        task = Task.objects.create(
-            assigned_user=assigned_user,
-            created_by=user,
-            **validated_data
-        )
+        validated_data['assigned_user'] = assigned_user
+        validated_data['created_by'] = user
+        
+        task = Task.objects.create(**validated_data)
         return task
 
     def update(self, instance, validated_data):

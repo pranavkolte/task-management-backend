@@ -4,6 +4,13 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.serializers import TokenRefreshSerializer
 
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['user_id', 'name', 'email']
+        extra_kwargs = {'user_id': {'read_only': True}}
+        
+        
 class OnboardUserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
 

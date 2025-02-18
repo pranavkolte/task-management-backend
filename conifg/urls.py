@@ -33,6 +33,7 @@ router = DefaultRouter()
 api_versions = {
     "v1": [
         ("users.urls", "users/"),
+        ("tasks.urls", "tasks/"),
     ]
 }
 

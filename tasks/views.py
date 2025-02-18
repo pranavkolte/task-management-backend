@@ -1,10 +1,15 @@
+from django.conf import settings
+from django.core.exceptions import ValidationError
+from django.core.mail import send_mail
+from django.core.validators import validate_email
+
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
-from .serializers import TaskSerializer
-from .models import Task
 
+from .models import Task
+from .serializers import TaskSerializer
 
 class TaskCreateAPIView(APIView):
     
@@ -21,10 +26,25 @@ class TaskCreateAPIView(APIView):
     def post(self, request, *args, **kwargs):
         serializer = TaskSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
-            serializer.save(created_by=request.user)
+            task = serializer.save(created_by=request.user)
+            assigned_user_email = request.data.get('assigned_user_email')
+            
+            if assigned_user_email:
+                
+                try:
+                    validate_email(assigned_user_email)
+                    send_mail(
+                        subject='Task Assigned',
+                        message=f'You have been assigned a new task: {task.title}',
+                        from_email=settings.EMAIL_HOST_USER,
+                        recipient_list=[assigned_user_email],
+                        fail_silently=False,
+                    )
+                    return Response(serializer.data, status=status.HTTP_201_CREATED)
+                except ValidationError:
+                    return Response({'error': 'Invalid email address'}, status=status.HTTP_400_BAD_REQUEST)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
 
 class TaskReadUpdateDeleteAPIView(APIView):
     permission_classes = [IsAuthenticated]
@@ -50,7 +70,21 @@ class TaskReadUpdateDeleteAPIView(APIView):
         
         serializer = TaskSerializer(task, data=request.data, partial=True, context={'request': request})
         if serializer.is_valid():
-            serializer.save()
+            task = serializer.save()
+            assigned_user_email = task.assigned_user.email if task.assigned_user else None
+            
+            if assigned_user_email:
+                try:
+                    validate_email(assigned_user_email)
+                    send_mail(
+                        subject='Task Updated',
+                        message=f'your Task is updated: {task.title}',
+                        from_email=settings.EMAIL_HOST_USER,
+                        recipient_list=[assigned_user_email],
+                        fail_silently=False,
+                    )
+                except ValidationError:
+                    return Response({'error': 'Invalid email address'}, status=status.HTTP_400_BAD_REQUEST)
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
